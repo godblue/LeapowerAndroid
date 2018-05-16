@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.leapower.edoctor.leapowerandroid.event.HttpRequestResultEvent;
 import com.leapower.edoctor.leapowerandroid.utils.ActivityUtils;
 import com.leapower.edoctor.leapowerandroid.utils.netutil.LeapowerNet;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
@@ -20,6 +25,7 @@ public abstract class BaseActivity extends SupportActivity {
         super.onCreate(savedInstanceState);
         //设置布局
         setContentView(intiLayout());
+        EventBus.getDefault().register(this);
         ActivityUtils.addActivity(this);
         //初始化控件
         initView();
@@ -58,9 +64,32 @@ public abstract class BaseActivity extends SupportActivity {
             toast.show();
         }
     }
+    /**
+     * 显示长toast
+     * @param msg
+     */
+    public void toastLong(String msg){
+        if (null == toast) {
+            toast = new Toast(this);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setText(msg);
+            toast.show();
+        } else {
+            toast.setText(msg);
+            toast.show();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
+    public void onHttpRequestResultEvent(HttpRequestResultEvent httpRequestResultEvent) {
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         ActivityUtils.removeActivity(this);
+
     }
 }

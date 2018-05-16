@@ -29,7 +29,7 @@ import okhttp3.Response;
  * Created by chao on 2018/05/15.
  */
 public class LeapowerNet {
-    private static final String TAG = "OkNetUtils";
+    private static final String TAG = "LeapowerNet";
 
     private static class SingletonHolder {
         static final LeapowerNet INSTANCE = new LeapowerNet();
@@ -136,7 +136,6 @@ public class LeapowerNet {
                         || e instanceof SocketTimeoutException) {
                     onNetworkInvalid();
                 } else {
-                    Log.e("greendao", "greenDaoException", e);
                     return;
                 }
 

@@ -1,6 +1,5 @@
 package com.leapower.edoctor.leapowerandroid.event;
 
-import com.leapower.edoctor.leapowerandroid.enums.HttpRequestType;
 
 import java.util.Map;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 public class HttpRequestResultEvent<T> {
 
     /*API编码*/
-private HttpRequestType apiType;
+private String apiType;
     /*原始请求地址*/
 private String apiUrl;
     /*API请求结果 成功or失败*/
@@ -22,7 +21,7 @@ private RestError[] errors;
     /*传递跟踪信息*/
 private Map<String, Object> extras;
 
-public HttpRequestResultEvent(HttpRequestType apiType,String apiUrl,boolean apiResult,T apiData,Map<String, Object> extras){
+public HttpRequestResultEvent(String apiType,String apiUrl,boolean apiResult,T apiData,Map<String, Object> extras){
         super();
         this.apiType = apiType;
         this.apiUrl = apiUrl;
@@ -31,7 +30,7 @@ public HttpRequestResultEvent(HttpRequestType apiType,String apiUrl,boolean apiR
         this.extras = extras;
         }
 
-public HttpRequestResultEvent(HttpRequestType apiType,String apiUrl,boolean apiResult,RestError[] errors,Map<String, Object> extras){
+public HttpRequestResultEvent(String apiType,String apiUrl,boolean apiResult,RestError[] errors,Map<String, Object> extras){
         super();
         this.apiType = apiType;
         this.apiUrl = apiUrl;
@@ -53,11 +52,11 @@ public String toString() {
         '}';
         }
 
-public HttpRequestType getApiType() {
+public String getApiType() {
         return apiType;
         }
 
-public void setApiType(HttpRequestType apiType) {
+public void setApiType(String apiType) {
         this.apiType = apiType;
         }
 

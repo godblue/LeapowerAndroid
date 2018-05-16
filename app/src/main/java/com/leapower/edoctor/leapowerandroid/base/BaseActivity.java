@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.leapower.edoctor.leapowerandroid.utils.ActivityUtils;
+import com.leapower.edoctor.leapowerandroid.utils.netutil.LeapowerNet;
 
 import me.yokeyword.fragmentation.SupportActivity;
 

@@ -1,8 +1,11 @@
 package com.leapower.edoctor.leapowerandroid.base;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import com.leapower.edoctor.leapowerandroid.R;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -18,8 +21,8 @@ public class BaseFragment extends SupportFragment {
      */
     @Override
     public boolean onBackPressedSupport() {
-        _mActivity.finish();
-        return true;
+        // 默认flase，继续向上传递
+        return super.onBackPressedSupport();
     }
     protected void hideSoftKeyboard() {
         if (getActivity().getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {

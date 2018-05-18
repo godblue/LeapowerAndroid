@@ -19,8 +19,7 @@ import me.yokeyword.fragmentation.SupportActivity;
  * Created by chao on 2018/05/15.
  */
 public abstract class BaseActivity extends SupportActivity {
-    /***封装toast对象**/
-    private static Toast toast;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,30 +54,14 @@ public abstract class BaseActivity extends SupportActivity {
      * @param msg
      */
     public void toastShort(String msg){
-        if (null == toast) {
-            toast = new Toast(this);
-            toast.setDuration(Toast.LENGTH_SHORT);
-            toast.setText(msg);
-            toast.show();
-        } else {
-            toast.setText(msg);
-            toast.show();
-        }
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
     /**
      * 显示长toast
      * @param msg
      */
     public void toastLong(String msg){
-        if (null == toast) {
-            toast = new Toast(this);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setText(msg);
-            toast.show();
-        } else {
-            toast.setText(msg);
-            toast.show();
-        }
+        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行

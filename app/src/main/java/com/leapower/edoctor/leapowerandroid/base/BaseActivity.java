@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.leapower.edoctor.leapowerandroid.event.HttpRequestResultEvent;
+import com.leapower.edoctor.leapowerandroid.event.NetError;
 import com.leapower.edoctor.leapowerandroid.utils.ActivityUtils;
 import com.leapower.edoctor.leapowerandroid.utils.netutil.LeapowerNet;
 
@@ -82,6 +83,26 @@ public abstract class BaseActivity extends SupportActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
     public void onHttpRequestResultEvent(HttpRequestResultEvent httpRequestResultEvent) {
+
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
+    public void onNetError(NetError netError) {
+        if (netError != null){
+            switch (netError.getErrorCode()){
+                case -1:
+                    toastShort("网络异常，请检查网络连接");
+                    break;
+                case 401:
+                    break;
+                case 403:
+                    break;
+                case 500:
+                    toastShort("服务器开小差");
+                    break;
+                default:
+                    break;
+            }
+        }
 
     }
 
